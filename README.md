@@ -29,7 +29,7 @@ Adoptar este modelo mental significa que, en este proyecto, no solo buscamos que
 
 Entender cómo Laravel maneja una solicitud es fundamental para saber dónde colocar nuestro código y cómo depurar problemas. Imaginemos el viaje de una petición para ver la lista de todos los proyectos:
 
-1.  **Entrada del Usuario:** Un usuario escribe `http://gestor-proyectos.test/projects` en su navegador.
+1.  **Entrada del Usuario:** Un usuario escribe `http://project-management.test/projects` en su navegador.
 2.  **Punto de Entrada Único (`public/index.php`):** La petición llega al único punto de entrada de la aplicación. Este archivo carga el framework.
 3.  **El Kernel HTTP (`app/Http/Kernel.php`):** El "corazón" de la aplicación recibe la petición. La pasa a través de una serie de "filtros" o **Middleware** globales (como verificar si hay una sesión activa).
 4.  **El Router (`routes/web.php`):** El Router examina la URL `/projects` y el método `GET`. Encuentra una coincidencia en nuestro archivo de rutas y determina que debe llamar al método `index()` del `ProjectController`.

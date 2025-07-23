@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\ProjectService;
+use App\Models\Project;
 class ProjectController extends Controller
 {
     protected $projectService;
@@ -10,6 +11,10 @@ class ProjectController extends Controller
     public function __construct(ProjectService $projectService)
     {
         $this->projectService = $projectService;
+    }
+    public function get()
+    {
+        return response()->json($this->projectService->getAllProjects());
     }
     //Listar todos los proyectos
     public function index()
@@ -33,7 +38,10 @@ class ProjectController extends Controller
     //mostrar por ID
     public function show($id)
     {
-        $project = $this->projectService->getProjectById($id);
+        $project = $this->projectService->getProjectById((int)$id);
+        if (!$project) {
+            abort(404);
+        }
         return view('projects.show', compact('project'));
     }
     //mostrar el formulario de edicion

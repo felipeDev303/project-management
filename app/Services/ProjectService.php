@@ -100,7 +100,7 @@ class ProjectService
      */
     public function getAllProjects(): array
     {
-        return self::$projects;
+        return self::$projects ?? [];
     }
 
     /**

@@ -43,8 +43,9 @@ class Project extends Model
         return $this->responsible;
     }
 
-    public function getMontoAttribute()
-    {
-        return $this->monto;
-    }
+    // Eliminar este accessor duplicado que causa el error
+    // public function getMontoAttribute()
+    // {
+    //     return $this->monto;  // Esto causa bucle infinito
+    // }
 }

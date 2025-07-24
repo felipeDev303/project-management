@@ -1,29 +1,35 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+
 class ProjectController extends Controller
 {
     /**
-     * Obtener todos los proyectos como JSON (API).
+     * Lista de proyectos (para vistas web)
      */
     public function index()
+    {
+        $projects = Project::all();
+        return view('projects.index', compact('projects'));
+    }
+
+    /**
+     * API - Lista de proyectos (JSON)
+     */
+    public function api_index()
     {
         $projects = Project::all();
         return response()->json($projects);
     }
 
-    /**
-     * Mostrar el formulario para crear un nuevo proyecto.
-     */
     public function create()
     {
         return view('projects.create');
     }
-    /**
-     * Almacenar un nuevo proyecto.
-     */
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -33,30 +39,31 @@ class ProjectController extends Controller
             'responsible' => 'required|string|max:255',
             'monto' => 'required|numeric|min:0',
         ]);
+
         $project = Project::create($validatedData);
-        return response()->json($project, 201);
+
+        // Si es petición AJAX, devolver JSON
+        if ($request->expectsJson()) {
+            return response()->json($project, 201);
+        }
+
+        // Si es formulario web, redirigir
+        return redirect()->route('projects.show', $project->id)
+            ->with('success', 'Proyecto creado exitosamente.');
     }
-    /**
-     * Mostrar un proyecto específico.
-     */
+
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return response()->json($project);
+        return view('projects.show', compact('project'));
     }
-
-    /**
-     * Mostrar el formulario para editar un proyecto.
-     */
 
     public function edit($id)
     {
         $project = Project::findOrFail($id);
         return view('projects.edit', compact('project'));
     }
-    /**
-     * Actualizar un proyecto existente.
-     */
+
     public function update(Request $request, $id)
     {
         $project = Project::findOrFail($id);
@@ -67,16 +74,23 @@ class ProjectController extends Controller
             'responsible' => 'required|string|max:255',
             'monto' => 'required|numeric|min:0',
         ]);
+
         $project->update($validatedData);
-        return response()->json($project);
+
+        if ($request->expectsJson()) {
+            return response()->json($project);
+        }
+
+        return redirect()->route('projects.show', $id)
+            ->with('success', 'Proyecto actualizado exitosamente.');
     }
-    /**
-     * Eliminar un proyecto.
-     */
-    public function destroy($id) 
+
+    public function destroy($id)
     {
         $project = Project::findOrFail($id);
         $project->delete();
-        return response()->json(null, 204);
-    }   
+
+        return redirect()->route('projects.index')
+            ->with('success', 'Proyecto eliminado exitosamente.');
+    }
 }

@@ -1,67 +1,82 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Services\ProjectService;
 use App\Models\Project;
 class ProjectController extends Controller
 {
-    protected $projectService;
-
-    //Desde aqui inicializamos el servicio de proyectos inyectamos en el constructor
-    public function __construct(ProjectService $projectService)
-    {
-        $this->projectService = $projectService;
-    }
-    public function get()
-    {
-        return response()->json($this->projectService->getAllProjects());
-    }
-    //Listar todos los proyectos
+    /**
+     * Obtener todos los proyectos como JSON (API).
+     */
     public function index()
     {
-        $projects = $this->projectService->getAllProjects();
-        return view('projects.index', compact('projects'));
+        $projects = Project::all();
+        return response()->json($projects);
     }
-    //form para crear los proyectos solo lo mostramos
+
+    /**
+     * Mostrar el formulario para crear un nuevo proyecto.
+     */
     public function create()
     {
         return view('projects.create');
     }
-    //Guardar un proyecto
+    /**
+     * Almacenar un nuevo proyecto.
+     */
     public function store(Request $request)
     {
-
-        $project = $this->projectService->createProject($request->all());
-        return redirect()->route('projects.show', $project['id'])
-            ->with('success', 'Proyecto creado exitosamente.');
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'status' => 'required|in:pendiente,en_progreso,completado',
+            'responsible' => 'required|string|max:255',
+            'monto' => 'required|numeric|min:0',
+        ]);
+        $project = Project::create($validatedData);
+        return response()->json($project, 201);
     }
-    //mostrar por ID
+    /**
+     * Mostrar un proyecto específico.
+     */
     public function show($id)
     {
-        $project = $this->projectService->getProjectById((int)$id);
-        if (!$project) {
-            abort(404);
-        }
-        return view('projects.show', compact('project'));
+        $project = Project::findOrFail($id);
+        return response()->json($project);
     }
-    //mostrar el formulario de edicion
+
+    /**
+     * Mostrar el formulario para editar un proyecto.
+     */
+
     public function edit($id)
     {
-        $project = $this->projectService->getProjectById($id);
+        $project = Project::findOrFail($id);
         return view('projects.edit', compact('project'));
     }
-    //update de un proyecto
+    /**
+     * Actualizar un proyecto existente.
+     */
     public function update(Request $request, $id)
     {
-
-        $project = $this->projectService->updateProject($id, $request->all());
-        return redirect()->route('projects.show', $id);
+        $project = Project::findOrFail($id);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'status' => 'required|in:pendiente,en_progreso,completado',
+            'responsible' => 'required|string|max:255',
+            'monto' => 'required|numeric|min:0',
+        ]);
+        $project->update($validatedData);
+        return response()->json($project);
     }
-
-    //eliminar un proyecto
-    public function destroy($id)
+    /**
+     * Eliminar un proyecto.
+     */
+    public function destroy($id) 
     {
-        $this->projectService->deleteProject($id);
-        return redirect()->route('projects.index');
-    }
+        $project = Project::findOrFail($id);
+        $project->delete();
+        return response()->json(null, 204);
+    }   
 }

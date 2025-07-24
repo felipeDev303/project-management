@@ -1,13 +1,16 @@
 <?php
 
+// Define las rutas de la aplicación
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RouteController;
 
+// Ruta de bienvenida
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Rutas de recursos para el controlador de proyectos
 Route::resource('projects', ProjectController::class);
 Route::get('/projects/get', [RouteController::class, 'get']);
 Route::get('/projects/create', [RouteController::class, 'create']) ->name('projects.create');

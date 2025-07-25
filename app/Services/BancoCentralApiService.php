@@ -13,7 +13,7 @@ class BancoCentralApiService
     protected ?string $pass;
 
     // El ID de la serie de tiempo para la UF diaria
-    const UF_SERIES_ID = 'F073.TCO.PRE.Z.D';
+    const UF_SERIES_ID = 'F051.E112.FLU.H.Z.CLP.T';
 
     public function __construct()
     {

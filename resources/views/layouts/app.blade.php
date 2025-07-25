@@ -15,9 +15,13 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 <i class="fas fa-project-diagram"></i> Gestión de Proyectos
             </a>
-            <div class="navbar-nav ms-auto">
+            <div class="navbar-nav ms-auto d-flex align-items-center">
+                <div class="me-3">
+                    <x-uf-value />
+                </div>
                 <a class="nav-link" href="{{ route('projects.index') }}">Proyectos</a>
                 <a class="nav-link" href="{{ route('projects.create') }}">Nuevo Proyecto</a>
+                <a class="nav-link" href="{{ url('/test-uf') }}">Prueba UF</a>
             </div>
         </div>
     </nav>

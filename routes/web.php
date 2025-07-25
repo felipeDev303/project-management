@@ -8,6 +8,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Ruta de prueba para el componente UF
+Route::get('/test-uf', function () {
+    return view('test-uf');
+});
+
 // Rutas web (devuelven vistas)
 Route::resource('projects', ProjectController::class);
 

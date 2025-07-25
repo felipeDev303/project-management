@@ -12,7 +12,7 @@
     <!-- Navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/projects') }}">
                 <i class="fas fa-project-diagram"></i> Gestión de Proyectos
             </a>
             <div class="navbar-nav ms-auto d-flex align-items-center">

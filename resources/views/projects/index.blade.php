@@ -6,7 +6,12 @@
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1><i class="fas fa-list"></i> Lista de Proyectos</h1>
+            <div>
+                <h1><i class="fas fa-list"></i> Lista de Proyectos</h1>
+                <div class="mt-2">
+                    <x-uf-value />
+                </div>
+            </div>
             <a href="{{ route('projects.create') }}" class="btn btn-success">
                 <i class="fas fa-plus"></i> Nuevo Proyecto
             </a>

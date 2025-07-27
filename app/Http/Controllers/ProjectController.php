@@ -16,15 +16,6 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects'));
     }
 
-    /**
-     * API - Lista de proyectos (JSON)
-     */
-    public function api_index()
-    {
-        $projects = Project::all();
-        return response()->json($projects);
-    }
-
     public function create()
     {
         return view('projects.create');
@@ -92,5 +83,61 @@ class ProjectController extends Controller
 
         return redirect()->route('projects.index')
             ->with('success', 'Proyecto eliminado exitosamente.');
+    }
+
+    // API Methods (return JSON)
+    
+    // 2. Controlador para obtener los proyectos
+    public function api_index()
+    {
+        $projects = Project::all();
+        return response()->json($projects);
+    }
+
+    // 1. Controlador para crear un proyecto
+    public function api_store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'status' => 'required|in:pendiente,en_progreso,completado',
+            'responsible' => 'required|string|max:255',
+            'monto' => 'required|numeric|min:0',
+        ]);
+
+        $project = Project::create($validated);
+        return response()->json($project, 201);
+    }
+
+    // 5. Controlador para obtener un proyecto por id
+    public function api_show($id)
+    {
+        $project = Project::findOrFail($id);
+        return response()->json($project);
+    }
+
+    // 3. Controlador para actualizar un proyecto por id
+    public function api_update(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+        
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'status' => 'required|in:pendiente,en_progreso,completado',
+            'responsible' => 'required|string|max:255',
+            'monto' => 'required|numeric|min:0',
+        ]);
+
+        $project->update($validated);
+        return response()->json($project);
+    }
+
+    // 4. Controlador para eliminar un proyecto por id
+    public function api_destroy($id)
+    {
+        $project = Project::findOrFail($id);
+        $project->delete();
+        return response()->json(['message' => 'Proyecto eliminado correctamente'], 200);
     }
 }

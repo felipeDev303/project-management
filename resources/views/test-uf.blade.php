@@ -92,19 +92,4 @@
         </div>
     </div>
 </div>
-
-<!-- Información adicional sobre el footer con Dashboard -->
-<div class="row mt-4">
-    <div class="col-12">
-        <div class="alert alert-info">
-            <h5 class="alert-heading">
-                <i class="fas fa-info-circle"></i> Nota sobre el Footer
-            </h5>
-            <p class="mb-0">
-                El footer de esta página incluye un enlace destacado al Dashboard donde podrás acceder al panel principal con estadísticas y resumen de todos los proyectos. 
-                <strong>¡No olvides revisarlo!</strong>
-            </p>
-        </div>
-    </div>
-</div>
 @endsection

@@ -20,29 +20,29 @@
 
     <!-- Main Content -->
     <main class="@yield('main_class', 'container mt-4')">
+        <!-- Breadcrumbs -->
+        @include('partials.breadcrumbs')
+        
+        <!-- Flash Messages -->
         @include('components.alerts.flash-messages')
         
         @yield('content')
     </main>
 
     <!-- Footer -->
-    @include('partials.footer')
+    <footer class="bg-light mt-5 py-4">
+        <div class="container text-center">
+            <p class="text-muted mb-0">
+                &copy; {{ date('Y') }} Gestión de Proyectos - Desarrollado con Laravel {{ app()->version() }}
+            </p>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
 </body>
 </html>
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
         @yield('content')
     </div>
 

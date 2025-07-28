@@ -3,10 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 
-// Ruta de bienvenida
+// Ruta de bienvenida redirige al dashboard
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
+
+// Dashboard principal
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 // Ruta de prueba para el componente UF
 Route::get('/test-uf', function () {

@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Gestión de Proyectos')</title>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Meta Tags -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="@yield('description', 'Sistema de gestión de proyectos')">
+    
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    @stack('styles')
 </head>
-<body>
-    <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/projects') }}">
-                <i class="fas fa-project-diagram"></i> Gestión de Proyectos
-            </a>
-            <div class="navbar-nav ms-auto d-flex align-items-center">
-                <div class="me-3">
-                    <x-uf-value />
-                </div>
-                <a class="nav-link" href="{{ route('projects.index') }}">Proyectos</a>
-                <a class="nav-link" href="{{ route('projects.create') }}">Nuevo Proyecto</a>
-                <a class="nav-link" href="{{ url('/test-uf') }}">Prueba UF</a>
-            </div>
-        </div>
-    </nav>
+<body class="@yield('body_class', '')">
+    <!-- Navigation -->
+    @include('partials.header')
 
-    <!-- Contenido principal -->
-    <div class="container mt-4">
-        <!-- Mensajes flash -->
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="fas fa-check-circle"></i> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <!-- Main Content -->
+    <main class="@yield('main_class', 'container mt-4')">
+        @include('components.alerts.flash-messages')
+        
+        @yield('content')
+    </main>
+
+    <!-- Footer -->
+    @include('partials.footer')
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
+</body>
+</html>
             </div>
         @endif
 

@@ -59,4 +59,65 @@ class BancoCentralApiService
             return null;
         });
     }
+
+    /**
+     * Obtiene información completa de la UF incluyendo fecha y metadatos.
+     */
+    public function getUfCompleteInfo(): array
+    {
+        $today = Carbon::today()->format('Y-m-d');
+        $cacheKey = "uf_complete_info_{$today}";
+
+        return Cache::remember($cacheKey, 1440, function () use ($today) {
+            
+            if (!$this->user || !$this->pass) {
+                return [
+                    'value' => null,
+                    'date' => $today,
+                    'error' => 'Credenciales no configuradas'
+                ];
+            }
+
+            try {
+                $response = Http::timeout(10)->get($this->baseUrl, [
+                    'user'       => $this->user,
+                    'pass'       => $this->pass,
+                    'function'   => 'GetSeries',
+                    'timeseries' => self::UF_SERIES_ID,
+                    'firstdate'  => $today,
+                    'lastdate'   => $today,
+                ]);
+
+                if ($response->successful()) {
+                    $data = $response->json();
+                    
+                    if (isset($data['Series']['Obs'][0]['value'])) {
+                        return [
+                            'value' => $data['Series']['Obs'][0]['value'],
+                            'date' => $data['Series']['Obs'][0]['indexDateString'] ?? $today,
+                            'unit' => 'Pesos',
+                            'frequency' => 'Diaria',
+                            'source' => 'Banco Central de Chile',
+                            'last_update' => Carbon::now()->format('d.M.Y'),
+                            'series_id' => self::UF_SERIES_ID,
+                            'error' => null
+                        ];
+                    }
+                }
+            } catch (\Exception $e) {
+                Log::warning('Error al obtener información completa UF: ' . $e->getMessage());
+                return [
+                    'value' => null,
+                    'date' => $today,
+                    'error' => $e->getMessage()
+                ];
+            }
+
+            return [
+                'value' => null,
+                'date' => $today,
+                'error' => 'No se pudo obtener información'
+            ];
+        });
+    }
 }

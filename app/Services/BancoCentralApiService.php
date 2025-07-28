@@ -53,7 +53,7 @@ class BancoCentralApiService
                 }
             } catch (\Exception $e) {
                 // Log del error pero no interrumpir la aplicación
-                \Log::warning('Error al obtener valor UF: ' . $e->getMessage());
+                Log::warning('Error al obtener valor UF: ' . $e->getMessage());
             }
 
             return null;

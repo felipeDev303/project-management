@@ -76,11 +76,34 @@
                 </div>
                 
                 <div class="mt-4 text-center">
-                    <a href="{{ route('projects.index') }}" class="btn btn-primary">
-                        <i class="fas fa-arrow-left"></i> Volver a Proyectos
-                    </a>
+                    <div class="btn-group" role="group">
+                        <a href="{{ route('dashboard') }}" class="btn btn-success">
+                            <i class="fas fa-tachometer-alt"></i> Ir al Dashboard
+                        </a>
+                        <a href="{{ route('projects.index') }}" class="btn btn-primary">
+                            <i class="fas fa-list"></i> Ver Proyectos
+                        </a>
+                        <a href="{{ route('projects.create') }}" class="btn btn-outline-primary">
+                            <i class="fas fa-plus"></i> Nuevo Proyecto
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información adicional sobre el footer con Dashboard -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-info">
+            <h5 class="alert-heading">
+                <i class="fas fa-info-circle"></i> Nota sobre el Footer
+            </h5>
+            <p class="mb-0">
+                El footer de esta página incluye un enlace destacado al Dashboard donde podrás acceder al panel principal con estadísticas y resumen de todos los proyectos. 
+                <strong>¡No olvides revisarlo!</strong>
+            </p>
         </div>
     </div>
 </div>

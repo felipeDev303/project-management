@@ -30,23 +30,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-light mt-5 py-4">
-        <div class="container text-center">
-            <p class="text-muted mb-0">
-                &copy; {{ date('Y') }} Gestión de Proyectos - Desarrollado con Laravel {{ app()->version() }}
-            </p>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
-</body>
-</html>
-        @yield('content')
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

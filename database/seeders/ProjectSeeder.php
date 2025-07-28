@@ -52,17 +52,17 @@ class ProjectSeeder extends Seeder
                 'status' => 'en_progreso',
                 'responsible' => 'Pedro Martínez',
                 'monto' => 85000.00,
-            ]
-        ];
-
-        foreach ($projects as $project) {
-            Project::create($project);
-        }
-    }
-}
+            ],
+            [
+                'id' => 6,
+                'name' => 'Sistema de CRM Empresarial',
+                'start_date' => '2024-04-15',
+                'status' => 'pendiente',
+                'responsible' => 'Laura Fernández',
                 'monto' => 110000.30,
             ],
             [
+                'id' => 7,
                 'name' => 'Actualización de Seguridad y Compliance',
                 'start_date' => '2025-01-10',
                 'status' => 'en_progreso',

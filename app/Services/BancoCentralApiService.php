@@ -13,7 +13,7 @@ class BancoCentralApiService
     protected ?string $user;
     protected ?string $pass;
 
-    // Usar el ID correcto para UF
+    // El código de la serie es:
     const UF_SERIES_ID = 'F073.UFF.PRE.Z.D';
 
     public function __construct()

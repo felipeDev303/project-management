@@ -1,3 +1,5 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
 :root {
     --color-dark: #0c1c32;
     --color-primary: #285e79;
@@ -8,15 +10,19 @@
 /* Clases Bootstrap personalizadas */
 .bg-custom-dark {
     background-color: var(--color-dark) !important;
+    color: white !important;
 }
 .bg-custom-primary {
     background-color: var(--color-primary) !important;
+    color: white !important;
 }
 .bg-custom-light {
     background-color: var(--color-light) !important;
+    color: white !important;
 }
 .bg-custom-accent {
     background-color: var(--color-accent) !important;
+    color: white !important;
 }
 
 .text-custom-dark {

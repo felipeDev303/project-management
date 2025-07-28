@@ -32,7 +32,7 @@
     </div>
 
     <div class="col-md-3 mb-4">
-        <div class="card bg-custom-accent text-white">
+        <div class="card bg-custom-dark text-white">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>

@@ -1,8 +1,9 @@
-@tailwind base;
+/* Elimina estas líneas de Tailwind */
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-/* Paleta personalizada */
+/* Mantén solo tus variables personalizadas */
 :root {
     --color-dark: #0c1c32;
     --color-primary: #285e79;

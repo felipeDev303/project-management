@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('dashboard') }}">
-            <i class="fas fa-project-diagram"></i> Gestión de Proyectos
+            <i class="fas fa-project-diagram text-custom-light"></i> Gestión de Proyectos
         </a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -11,12 +11,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active text-custom-accent' : '' }}" href="{{ route('dashboard') }}">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('projects.*') ? 'active' : '' }}" href="{{ route('projects.index') }}">
+                    <a class="nav-link {{ request()->routeIs('projects.*') ? 'active text-custom-accent' : '' }}" href="{{ route('projects.index') }}">
                         <i class="fas fa-list"></i> Proyectos
                     </a>
                 </li>
@@ -26,7 +26,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('projects.create') }}">
-                            <i class="fas fa-plus-circle"></i> Nuevo Proyecto
+                            <i class="fas fa-plus-circle text-custom-primary"></i> Nuevo Proyecto
                         </a></li>
                     </ul>
                 </li>

@@ -8,7 +8,7 @@
     <div class="col-12 mb-4">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h1 class="h3 mb-1">Dashboard</h1>
+                <h1 class="h3 mb-1 text-custom-dark">Dashboard</h1>
                 <p class="text-muted">Bienvenido al sistema de gestión de proyectos</p>
             </div>
         </div>
@@ -16,7 +16,7 @@
 
     <!-- Tarjetas de Resumen -->
     <div class="col-md-3 mb-4">
-        <div class="card bg-primary text-white">
+        <div class="card bg-custom-primary text-white">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="col-md-3 mb-4">
-        <div class="card bg-warning text-dark">
+        <div class="card bg-custom-accent text-white">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="col-md-3 mb-4">
-        <div class="card bg-info text-white">
+        <div class="card bg-custom-light text-white">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="col-md-3 mb-4">
-        <div class="card bg-success text-white">
+        <div class="card bg-custom-dark text-white">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -81,19 +81,19 @@
 
     <!-- Acciones Rápidas -->
     <div class="col-md-6 mb-4">
-        <div class="card">
-            <div class="card-header">
+        <div class="card border-custom-light">
+            <div class="card-header bg-custom-light text-white">
                 <h5 class="card-title mb-0"><i class="fas fa-rocket"></i> Acciones Rápidas</h5>
             </div>
             <div class="card-body">
                 <div class="d-grid gap-2">
-                    <a href="{{ route('projects.create') }}" class="btn btn-success btn-lg">
+                    <a href="{{ route('projects.create') }}" class="btn btn-custom-primary btn-lg">
                         <i class="fas fa-plus-circle"></i> Crear Nuevo Proyecto
                     </a>
-                    <a href="{{ route('projects.index') }}" class="btn btn-primary btn-lg">
+                    <a href="{{ route('projects.index') }}" class="btn btn-custom-accent btn-lg">
                         <i class="fas fa-list"></i> Ver Todos los Proyectos
                     </a>
-                    <a href="/test-uf" class="btn btn-secondary btn-lg">
+                    <a href="/test-uf" class="btn btn-outline-secondary btn-lg">
                         <i class="fas fa-vial"></i> Probar Componente UF
                     </a>
                 </div>
@@ -103,10 +103,10 @@
 
     <!-- Proyectos Recientes -->
     <div class="col-md-6 mb-4">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card border-custom-primary">
+            <div class="card-header bg-custom-primary text-white d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0"><i class="fas fa-history"></i> Proyectos Recientes</h5>
-                <a href="{{ route('projects.index') }}" class="btn btn-sm btn-outline-primary">Ver todos</a>
+                <a href="{{ route('projects.index') }}" class="btn btn-sm btn-outline-light">Ver todos</a>
             </div>
             <div class="card-body p-0">
                 @php
@@ -119,13 +119,13 @@
                             <div class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
                                     <h6 class="mb-1">
-                                        <a href="{{ route('projects.show', $project->id) }}" class="text-decoration-none">
+                                        <a href="{{ route('projects.show', $project->id) }}" class="text-decoration-none text-custom-primary">
                                             {{ $project->name }}
                                         </a>
                                     </h6>
                                     <small class="text-muted">{{ $project->responsible }}</small>
                                 </div>
-                                <span class="badge bg-{{ $project->status == 'completado' ? 'success' : ($project->status == 'en_progreso' ? 'info' : 'warning') }}">
+                                <span class="badge bg-{{ $project->status == 'completado' ? 'custom-dark' : ($project->status == 'en_progreso' ? 'custom-light' : 'custom-accent') }}">
                                     {{ ucfirst(str_replace('_', ' ', $project->status)) }}
                                 </span>
                             </div>
@@ -133,9 +133,9 @@
                     </div>
                 @else
                     <div class="text-center py-4">
-                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                        <i class="fas fa-inbox fa-3x text-custom-light mb-3"></i>
                         <p class="text-muted">No hay proyectos aún</p>
-                        <a href="{{ route('projects.create') }}" class="btn btn-primary">Crear el primero</a>
+                        <a href="{{ route('projects.create') }}" class="btn btn-custom-primary">Crear el primero</a>
                     </div>
                 @endif
             </div>

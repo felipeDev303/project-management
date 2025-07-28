@@ -8,9 +8,17 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-// Dashboard principal (eliminar duplicado)
+// Dashboard principal
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // Obtener estadísticas básicas para el dashboard
+    $stats = [
+        'total' => \App\Models\Project::count(),
+        'pendiente' => \App\Models\Project::where('status', 'pendiente')->count(),
+        'en_progreso' => \App\Models\Project::where('status', 'en_progreso')->count(),
+        'completado' => \App\Models\Project::where('status', 'completado')->count(),
+    ];
+    
+    return view('dashboard', compact('stats'));
 })->name('dashboard');
 
 // Ruta de prueba para el componente UF

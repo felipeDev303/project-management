@@ -11,7 +11,9 @@
                 <h1 class="h3 mb-1">Dashboard</h1>
                 <p class="text-muted">Bienvenido al sistema de gestión de proyectos</p>
             </div>
-            <!-- Eliminar UF duplicado aquí ya que está en el header -->
+            <div>
+                <x-uf-value />
+            </div>
         </div>
     </div>
 
@@ -21,7 +23,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h4 class="card-title">{{ \App\Models\Project::count() }}</h4>
+                        <h4 class="card-title">{{ $stats['total'] ?? 0 }}</h4>
                         <p class="card-text">Total Proyectos</p>
                     </div>
                     <div class="align-self-center">
@@ -37,7 +39,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h4 class="card-title">{{ \App\Models\Project::where('status', 'pendiente')->count() }}</h4>
+                        <h4 class="card-title">{{ $stats['pendiente'] ?? 0 }}</h4>
                         <p class="card-text">Pendientes</p>
                     </div>
                     <div class="align-self-center">
@@ -53,7 +55,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h4 class="card-title">{{ \App\Models\Project::where('status', 'en_progreso')->count() }}</h4>
+                        <h4 class="card-title">{{ $stats['en_progreso'] ?? 0 }}</h4>
                         <p class="card-text">En Progreso</p>
                     </div>
                     <div class="align-self-center">
@@ -69,7 +71,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h4 class="card-title">{{ \App\Models\Project::where('status', 'completado')->count() }}</h4>
+                        <h4 class="card-title">{{ $stats['completado'] ?? 0 }}</h4>
                         <p class="card-text">Completados</p>
                     </div>
                     <div class="align-self-center">
@@ -142,7 +144,5 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
 </div>
 @endsection

@@ -1,6 +1,6 @@
 <div class="uf-value d-inline-flex align-items-center">
     <i class="fas fa-coins text-warning me-2"></i>
-    <span class="fw-bold text-dark">UF:</span>
+    <span class="fw-bold text-light">UF:</span>
     @if($value)
         <span class="ms-2 badge bg-primary fs-6">
             ${{ number_format((float)$value, 2, ',', '.') }}

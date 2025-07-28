@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class BancoCentralApiService
 {
@@ -13,7 +14,7 @@ class BancoCentralApiService
     protected ?string $pass;
 
     // Usar el ID correcto para UF
-    const UF_SERIES_ID = 'F073.TCO.PRE.Z.D';
+    const UF_SERIES_ID = 'F073.UFF.PRE.Z.D';
 
     public function __construct()
     {

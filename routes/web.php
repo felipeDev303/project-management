@@ -8,7 +8,7 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-// Dashboard principal
+// Dashboard principal (eliminar duplicado)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

@@ -12,8 +12,8 @@ class BancoCentralApiService
     protected ?string $user;
     protected ?string $pass;
 
-    // El ID de la serie de tiempo para la UF diaria
-    const UF_SERIES_ID = 'F073.UFF.PRE.Z.D';
+    // Usar el ID correcto para UF
+    const UF_SERIES_ID = 'F073.TCO.PRE.Z.D';
 
     public function __construct()
     {
@@ -30,30 +30,32 @@ class BancoCentralApiService
         $today = Carbon::today()->format('Y-m-d');
         $cacheKey = "uf_value_{$today}";
 
-        // Guarda el resultado en caché por 24 horas (1440 minutos).
-        // La función solo se ejecutará si el valor no está en caché.
+        // Caché por 24 horas para evitar múltiples llamadas
         return Cache::remember($cacheKey, 1440, function () use ($today) {
             
             if (!$this->user || !$this->pass) {
-                // Si no hay credenciales en .env, no podemos continuar.
                 return null;
             }
 
-            $response = Http::get($this->baseUrl, [
-                'user'       => $this->user,
-                'pass'       => $this->pass,
-                'function'   => 'GetSeries',
-                'timeseries' => self::UF_SERIES_ID,
-                'firstdate'  => $today,
-                'lastdate'   => $today,
-            ]);
+            try {
+                $response = Http::timeout(10)->get($this->baseUrl, [
+                    'user'       => $this->user,
+                    'pass'       => $this->pass,
+                    'function'   => 'GetSeries',
+                    'timeseries' => self::UF_SERIES_ID,
+                    'firstdate'  => $today,
+                    'lastdate'   => $today,
+                ]);
 
-            // Verifica si la petición fue exitosa y si la respuesta tiene el formato esperado
-            if ($response->successful() && isset($response->json()['Series']['Obs'][0]['value'])) {
-                return $response->json()['Series']['Obs'][0]['value'];
+                if ($response->successful() && isset($response->json()['Series']['Obs'][0]['value'])) {
+                    return $response->json()['Series']['Obs'][0]['value'];
+                }
+            } catch (\Exception $e) {
+                // Log del error pero no interrumpir la aplicación
+                \Log::warning('Error al obtener valor UF: ' . $e->getMessage());
             }
 
-            return null; // Devuelve null si la API falla o no hay datos
+            return null;
         });
     }
 }

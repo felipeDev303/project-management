@@ -11,9 +11,7 @@
                 <h1 class="h3 mb-1">Dashboard</h1>
                 <p class="text-muted">Bienvenido al sistema de gestión de proyectos</p>
             </div>
-            <div>
-                <x-uf-value />
-            </div>
+            <!-- Eliminar UF duplicado aquí ya que está en el header -->
         </div>
     </div>
 
@@ -144,5 +142,7 @@
             </div>
         </div>
     </div>
+</div>
+@endsection
 </div>
 @endsection

@@ -14,36 +14,37 @@
         </div>
     </div>
 </footer>
-            <!-- Enlaces rápidos -->
-            <div class="col-md-4 mb-3">
-                <h6 class="text-secondary">Enlaces Rápidos</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2">
-                        <a href="{{ route('dashboard') }}" class="text-primary text-decoration-none">
-                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="{{ route('projects.index') }}" class="text-primary text-decoration-none">
-                            <i class="fas fa-list me-2"></i>Ver Proyectos
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="{{ route('projects.create') }}" class="text-primary text-decoration-none">
-                            <i class="fas fa-plus me-2"></i>Nuevo Proyecto
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="/test-uf" class="text-primary text-decoration-none">
-                            <i class="fas fa-vial me-2"></i>Prueba UF
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
         </div>
         
         <hr class="border-secondary">
-        
-    </div>
-</footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-secondary">Enlaces Rápidos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">
+                            <a href="{{ route('dashboard') }}" class="text-primary text-decoration-none">
+                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ route('projects.index') }}" class="text-primary text-decoration-none">
+                                <i class="fas fa-list me-2"></i>Ver Proyectos
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ route('projects.create') }}" class="text-primary text-decoration-none">
+                                <i class="fas fa-plus me-2"></i>Nuevo Proyecto
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/test-uf" class="text-primary text-decoration-none">
+                                <i class="fas fa-vial me-2"></i>Prueba UF
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>

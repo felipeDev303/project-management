@@ -14,23 +14,23 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     @stack('styles')
 </head>
-<body class="@yield('body_class', '')">
+<body class="@yield('body_class', 'd-flex flex-column min-vh-100')">
     <!-- Navigation -->
-    @include('partials.header')
+    <x-layout.header />
 
     <!-- Main Content -->
-    <main class="@yield('main_class', 'container mt-4')">
+    <main class="@yield('main_class', 'container mt-4 flex-grow-1')">
         <!-- Breadcrumbs -->
-        @include('partials.breadcrumbs')
+        <x-layout.breadcrumbs />
         
         <!-- Flash Messages -->
-        @include('components.alerts.flash-messages')
+        <x-alerts.flash-messages />
         
         @yield('content')
     </main>
 
     <!-- Footer -->
-    @include('partials.footer')
+    <x-layout.footer />
 
     <!-- Scripts -->
     @stack('scripts')

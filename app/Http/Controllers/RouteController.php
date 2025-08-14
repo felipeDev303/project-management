@@ -11,11 +11,11 @@ class RouteController extends Controller
     }
     public function index()
     {
-        return view('projects.index'); // Ajusta la vista según tu necesidad
+        return view('projects.index'); 
     }
     public function create()
     {
-        return view('projects.create'); // Ajusta la vista según tu necesidad
+        return view('projects.create'); 
     }
     public function store(Request $request)
     {
@@ -23,11 +23,11 @@ class RouteController extends Controller
     }
     public function show($id)
     {
-        return view('projects.show', ['id' => $id]); // Ajusta la vista según tu necesidad
+        return view('projects.show', ['id' => $id]); 
     }
     public function edit($id)
     {
-        return view('projects.edit', ['id' => $id]); // Ajusta la vista según tu necesidad
+        return view('projects.edit', ['id' => $id]); 
     }
     public function update(Request $request, $id)
     {

@@ -8,7 +8,7 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-// Dashboard principal
+// Ruta del Dashboard principal
 Route::get('/dashboard', function () {
     // Obtener estadísticas básicas para el dashboard
     $stats = [

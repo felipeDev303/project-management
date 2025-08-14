@@ -84,8 +84,8 @@ class ProjectController extends Controller
         return redirect()->route('projects.index')
             ->with('success', 'Proyecto eliminado exitosamente.');
     }
-
-    // API Methods (return JSON)
+    
+    // Métodos API (return JSON)
     
     // 2. Controlador para obtener los proyectos
     public function api_index()
